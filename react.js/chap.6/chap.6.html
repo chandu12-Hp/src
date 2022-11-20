@@ -1,0 +1,56 @@
+
+import "./App.css";
+import Navbar from "./react.js/chap.5/Navbar";
+import TextForm from "./react.js/chap.6/TextForm"
+
+
+
+function App() {
+  return (
+  <>
+ 
+<Navbar title = "popkon"/>
+<div className="container">
+<TextForm heading = "the textbox"/>
+</div>
+
+  </>
+    );
+  }
+
+export default App;
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&7
+in tezt form
+
+
+
+import React, { useState } from 'react';
+
+
+                         
+export default function textForm(props) {
+  const handleclick = () =>{
+    console.log("uppercase has clicked" + text) ;
+    let newtext = text.toUpperCase();
+    setText(newtext);
+  }
+  const handleOnchange = (event) =>{
+    console.log("onchange has clicked")
+    setText(event.target.value);
+  }
+  const [text ,setText] = useState("Enter the Text here");
+  return (
+    <>
+<div className="mb-3">
+
+  <label htmlFor="exampleFormControlTextarea1" className="form-label">THE TEXT BOX</label>
+  <h1>{props.heading}</h1>
+  <textarea className="form-control" id="exampleFormControlTextarea1" value ={text}rows="8"onChange ={handleOnchange} ></textarea>
+  </div>
+  <button className = "  btn btn-primary" onClick ={handleclick}>Convert to Uppercase</button>
+</>
+  )
+}
+

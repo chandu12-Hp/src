@@ -1,0 +1,287 @@
+
+
+import "./App.css";
+import Navbar from "./react.js/chap.5/Navbar";
+import TextForm from "./react.js/chap.6/TextForm"
+import About from "./react.js/chap.7/About";
+import Alert from "./chap.13/Alert"
+
+import React, { useState } from 'react';
+
+
+function App() {
+  const [mode, setMode] = useState("dark")
+  const [alert, setAlert] = useState("null")
+
+
+  const showAlert =(message,type)=>{
+    setAlert({
+      msg:message,
+      type: type
+    })
+    setTimeout(() => {
+      showAlert(null)
+    }, 4000);
+  }
+  const enable= ()=>{
+    if(mode==="light"){
+      setMode ("dark")
+      document.body.style.backgroundColor = "black"
+      showAlert("dark mode enable","success")
+      
+    }
+    else{
+      setMode  ("light")
+      document.body.style.backgroundColor = "white"
+      showAlert("light mode enable","success")
+
+    }
+  }
+  return (
+  <>
+ 
+<Navbar title = "popkon" mode ={mode} enableMode ={enable}/>
+<Alert alert ={alert}></Alert>
+<div className="container">
+<TextForm heading = "the textbox" showAlert ={showAlert} mode ={mode}/>
+<About></About>
+</div>
+
+
+  </>
+    );
+  }
+
+export default App;
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+import React from 'react'
+
+function alert(props) {
+  return (
+    
+   props.alert && <div className={`alert alert-${props.alert.type} alert-dismissible fade show`} role="alert">
+  {props.alert.type} <strong>{props.alert.msg}</strong>
+  
+</div>
+    
+    
+  )
+}
+
+export default alert
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+import React, { useState } from 'react';
+
+
+
+export default function textForm(props) {
+  const handleclick = () =>{
+    console.log("uppercase has clicked" + text) ;
+    let newtext = text.toUpperCase();
+    setText(newtext);
+    props.showAlert("uppercase successfully","success")
+  }
+  const handlelclick = () =>{
+    console.log("lowercase has clicked" + text) ;
+    let newtext = text.toLowerCase();
+    setText(newtext);
+    props.showAlert("lowercase successfully","success")
+  }
+  const handleclear = () =>{
+    console.log("click & clear" + text) ;
+   let newtext = '';
+    setText(newtext);
+    props.showAlert("clear successfully","success")
+  }
+  const handlecopy = () =>{
+    let text = document.getElementById('mybox')
+    console.log("click & copy" + text) ;
+    text.select();
+    navigator.clipboard.writeText(text.value)
+    props.showAlert("copied! successfully","success")
+    
+  }
+  const handleOnchange = (event) =>{
+    console.log("onchange has clicked")
+    setText(event.target.value);
+  }
+  const [text ,setText] = useState("Enter the Text here");
+  return (
+    <>
+<div className="mb-3 container"  style = {{color: props.mode==="dark"?"white":"#052d54"}} >
+
+  <label htmlFor="exampleFormControlTextarea1" className="form-label comntainer">THE TEXT BOX</label>
+  <h1>{props.heading}</h1>
+  <textarea className="form-control " id="mybox" value ={text}rows="8"onChange ={handleOnchange} style = {{background: props.mode==="dark"?"#052d54":"light",color: props.mode==="dark"?"white":"#052d54"}} ></textarea>
+  </div>
+  <button className = "  btn btn-primary mx-2" onClick ={handleclick}>Convert to Uppercase</button>
+  <button className = "  btn btn-primary mx-2" onClick ={handlelclick}>Convert to lowercase</button>
+  <button className = "  btn btn-primary mx-2" onClick ={handleclear}>click to copy</button>
+  <button className = "  btn btn-primary mx-2" onClick ={handlecopy}>click to copy</button>
+  
+  <div className="container my-3" style = {{color: props.mode==="dark"?"white":"#052d54"}}>
+  <h1>your Text contains these no of words and charaters</h1>
+  <p>words: {text.split(" ").length} charaters : {text.length}</p>
+  <h2>how many min you will take to read it</h2>
+  <p className='my-3'>{1/25 * text.length}</p>
+  <h1>preview</h1>
+  <p>{text.toUpperCase()}</p>
+  </div>
+
+</>
+  )
+}
+
+    &%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    import React,{useState} from "react";
+// it will work either show error.
+
+export default function about() {
+    let [myStyle,setmyStyle]= useState({
+        backgroundColor : 'black',
+        color : 'white'
+    })
+   let [btntext,setBtntext] = useState("dark mode on");
+
+   const togglestyle = () =>{
+    if(myStyle.color === 'white'){
+        setmyStyle({
+            backgroundColor : 'white',
+            color : 'black'
+
+        })
+        setBtntext("Dark mode on")
+    }
+    else{
+        setBtntext("ligth mode on")
+        setmyStyle({
+            backgroundColor :'black',
+            color : 'white'
+        })
+    }
+   }
+  return (
+    <>
+    <div className="container" style={myStyle} >
+      <h1 className="my-2 mx-2">About us</h1>
+        <div className="accordion" id="accordionExample" style={myStyle}>
+          <div className="accordion-item">
+            <h2 className="accordion-header" id="headingOne">
+              <button
+                className="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+                style={myStyle}
+              >
+                Accordion Item #1
+              </button>
+            </h2>
+            <div
+              id="collapseOne"
+              className="accordion-collapse collapse show"
+              aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample"
+            >
+              <div className="accordion-body" style={myStyle}>
+                <strong>This is the first item's accordion body.</strong> It is
+                shown by default, until the collapse plugin adds the appropriate
+                classNamees that we use to style each element. These classNamees control
+                the overall appearance, as well as the showing and hiding via
+                CSS transitions. You can modify any of this with custom CSS or
+                overriding our default variables. It's also worth noting that
+                just about any HTML can go within the{" "}
+                <code>.accordion-body</code>, though the transition does limit
+                overflow.
+              </div>
+            </div>
+          </div>
+          <div className="accordion-item">
+            <h2 className="accordion-header" id="headingTwo">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo"
+                aria-expanded="false"
+                aria-controls="collapseTwo"
+                style={myStyle}
+              >
+                Accordion Item #2
+              </button>
+            </h2>
+            <div
+              id="collapseTwo"
+              className="accordion-collapse collapse"
+              aria-labelledby="headingTwo"
+              data-bs-parent="#accordionExample"
+            >
+              <div className="accordion-body" style={myStyle}>
+                <strong>This is the second item's accordion body.</strong> It is
+                hidden by default, until the collapse plugin adds the
+                appropriate classNamees that we use to style each element. These
+                classNamees control the overall appearance, as well as the showing
+                and hiding via CSS transitions. You can modify any of this with
+                custom CSS or overriding our default variables. It's also worth
+                noting that just about any HTML can go within the{" "}
+                <code>.accordion-body</code>, though the transition does limit
+                overflow.
+              </div>
+            </div>
+          </div>
+          <div className="accordion-item">
+            <h2 className="accordion-header" id="headingThree">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseThree"
+                aria-expanded="false"
+                aria-controls="collapseThree"
+                style={myStyle}
+              >
+                Accordion Item #3
+              </button>
+            </h2>
+            <div
+              id="collapseThree"
+              className="accordion-collapse collapse"
+              aria-labelledby="headingThree"
+              data-bs-parent="#accordionExample"
+            >
+              <div className="accordion-body" style={myStyle}>
+                <strong>This is the third item's accordion body.</strong> It is
+                hidden by default, until the collapse plugin adds the
+                appropriate classNamees that we use to style each element. These
+                classNamees control the overall appearance, as well as the showing
+                and hiding via CSS transitions. You can modify any of this with
+                custom CSS or overriding our default variables. It's also worth
+                noting that just about any HTML can go within the{" "}
+                <code>.accordion-body</code>, though the transition does limit
+                overflow.
+              </div>
+            </div>
+          </div>
+        </div>
+        <button className="btn btn-outline-success my-2 mx-3" onClick={togglestyle}>{btntext}</button>
+    </div>
+    </>
+  );
+}

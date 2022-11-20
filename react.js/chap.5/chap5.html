@@ -1,0 +1,238 @@
+<!-- prop and prototype -->
+<!-- so esme basically pahle to module 1 and 2 me mjs ke karna  export import kr node ./filename karne pr vha exported value show ho jati hai sikha -->
+<!-- now kisi external  file ko jo ki yha Navbar hai use app.ja ke retturn ke <> ke ander agar<Navbar > ke rup me likhe to vo file hi pura export ho jata hai.-->
+    <!-- now app ke return ke ander ke sare data ko navbar me le aata hu and vha sirf navbar rahne du to vaise hi randeer hoga exddd2 dekho -->
+    <!-- ab agar title of navbar ko mai ek external string ki trh laau props ki sahayta se to excddd3 dekhe so props ek property hai jisme agar component se value de to usse change kr sakte hai -->
+    <!-- now portype jise import karna hogajoki kiya hai jiska code navbar page me niche sabse hoga esak mtlab banta hai ki ye chaker hai ki jo data aapne title : me diya hai vo usi rup me hai na nhi mtlab string hi hai ya ki koi bulian ya nhmberr hai and web page me error ke rup me show hoaga. -->
+
+    
+import "./App.css";
+import Navbar from "./react.js/chap.5/Navbar";
+
+
+function App() {
+  return (
+  <>
+  <nav className="navbar navbar-expand-lg bg-light">
+  <div className="container-fluid">
+    <a className="navbar-brand" href="/">Navbar</a>
+    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon"></span>
+    </button>
+    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        <li className="nav-item">
+          <a className="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="/">Link</a>
+        </li>
+        <li className="nav-item dropdown">
+          <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul className="dropdown-menu">
+            <li><a className="dropdown-item" href="/">Action</a></li>
+            <li><a className="dropdown-item" href="/">Another action</a></li>
+            <li><hr className="dropdown-divider"/></li>
+            <li><a className="dropdown-item" href="/">Something else here</a></li>
+          </ul>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link disabled">Disabled</a>
+        </li>
+      </ul>
+      <form className="d-flex" role="search">
+        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button className="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<Navbar
+  </>
+    );
+  }
+
+export default App;
+
+
+
+<!-- exddd2 -->
+// hamesha file ka naam capital se chalu karna.
+// just type rfc
+import React from 'react'
+
+export default function Navbar(props) {
+  return (
+    
+      <>
+      <nav className="navbar navbar-expand-lg bg-light">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="/">Navbar</a>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/">Link</a>
+            </li>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </a>
+              <ul className="dropdown-menu">
+                <li><a className="dropdown-item" href="/">Action</a></li>
+                <li><a className="dropdown-item" href="/">Another action</a></li>
+                <li><hr className="dropdown-divider"/></li>
+                <li><a className="dropdown-item" href="/">Something else here</a></li>
+              </ul>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link disabled">Disabled</a>
+            </li>
+          </ul>
+          <form className="d-flex" role="search">
+            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+            <button className="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    
+    </>
+  );
+}
+
+<!-- exxcdd3 -->
+
+import "./App.css";
+import Navbar from "./react.js/chap.5/Navbar";
+
+
+function App() {
+  return (
+  <>
+ 
+<Navbar title = "popkon"/>
+  </>
+    );
+  }
+
+export default App;
+
+
+
+@@@@@&&&&
+// hamesha file ka naam capital se chalu karna.
+// just type rfc
+import React from 'react'
+
+export default function Navbar(props) {
+  return (
+    
+      <>
+      <nav className="navbar navbar-expand-lg bg-light">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="/">{props.title}</a>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/">Link</a>
+            </li>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </a>
+              <ul className="dropdown-menu">
+                <li><a className="dropdown-item" href="/">Action</a></li>
+                <li><a className="dropdown-item" href="/">Another action</a></li>
+                <li><hr className="dropdown-divider"/></li>
+                <li><a className="dropdown-item" href="/">Something else here</a></li>
+              </ul>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link disabled">Disabled</a>
+            </li>
+          </ul>
+          <form className="d-flex" role="search">
+            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+            <button className="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    
+    </>
+  );
+}
+
+
+<!-- dsceeee -->
+// hamesha file ka naam capital se chalu karna.
+// just type rfc
+import React from 'react'
+import PropTypes from 'prop-types';
+
+export default function Navbar(props) {
+  return (
+    
+      <>
+      <nav className="navbar navbar-expand-lg bg-light">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="/">{props.title}</a>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/">Link</a>
+            </li>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </a>
+              <ul className="dropdown-menu">
+                <li><a className="dropdown-item" href="/">Action</a></li>
+                <li><a className="dropdown-item" href="/">Another action</a></li>
+                <li><hr className="dropdown-divider"/></li>
+                <li><a className="dropdown-item" href="/">Something else here</a></li>
+              </ul>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link disabled">Disabled</a>
+            </li>
+          </ul>
+          <form className="d-flex" role="search">
+            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+            <button className="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    
+    </>
+  );
+}
+
+Navbar.propTypes ={
+  title:PropTypes.string.isRequired
+}
+
+Navbar.defaultProps ={
+  title: 'set title here'
+}

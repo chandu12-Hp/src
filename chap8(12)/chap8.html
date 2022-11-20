@@ -1,0 +1,161 @@
+
+import "./App.css";
+import Navbar from "./react.js/chap.5/Navbar";
+import TextForm from "./react.js/chap.6/TextForm"
+import About from "./react.js/chap.7/8/About";
+
+import React, { useState } from 'react';
+
+
+function App() {
+  const [mode, setMode] = useState("dark")
+
+  const enable= ()=>{
+    if(mode==="light"){
+      setMode ("dark")
+      document.body.style.backgroundColor = "black"
+      document.body.style.fon
+    }
+    else{
+      setMode  ("light")
+      document.body.style.backgroundColor = "white"
+
+    }
+  }
+  return (
+  <>
+ 
+<Navbar title = "popkon" mode ={mode} enableMode ={enable}/>
+<div className="container">
+<TextForm heading = "the textbox" mode ={mode}/>
+<About></About>
+</div>
+
+
+  </>
+    );
+  }
+
+export default App;
+
+
+
+
+%%%%%%%%%%%%%%%%%$%%$$$$$$$$$$$$$$$$$$$$$%%
+import React, { useState } from 'react';
+
+
+
+export default function textForm(props) {
+  const handleclick = () =>{
+    console.log("uppercase has clicked" + text) ;
+    let newtext = text.toUpperCase();
+    setText(newtext);
+  }
+  const handlelclick = () =>{
+    console.log("lowercase has clicked" + text) ;
+    let newtext = text.toLowerCase();
+    setText(newtext);
+  }
+  const handleclear = () =>{
+    console.log("click & clear" + text) ;
+   let newtext = '';
+    setText(newtext);
+  }
+  const handlecopy = () =>{
+    let text = document.getElementById('mybox')
+    console.log("click & copy" + text) ;
+    text.select();
+    navigator.clipboard.writeText(text.value)
+    
+  }
+  const handleOnchange = (event) =>{
+    console.log("onchange has clicked")
+    setText(event.target.value);
+  }
+  const [text ,setText] = useState("Enter the Text here");
+  return (
+    <>
+<div className="mb-3 container"  style = {{color: props.mode==="dark"?"white":"#052d54"}} >
+
+  <label htmlFor="exampleFormControlTextarea1" className="form-label comntainer">THE TEXT BOX</label>
+  <h1>{props.heading}</h1>
+  <textarea className="form-control " id="mybox" value ={text}rows="8"onChange ={handleOnchange} style = {{background: props.mode==="dark"?"#052d54":"light",color: props.mode==="dark"?"white":"#052d54"}} ></textarea>
+  </div>
+  <button className = "  btn btn-primary mx-2" onClick ={handleclick}>Convert to Uppercase</button>
+  <button className = "  btn btn-primary mx-2" onClick ={handlelclick}>Convert to lowercase</button>
+  <button className = "  btn btn-primary mx-2" onClick ={handleclear}>click to copy</button>
+  <button className = "  btn btn-primary mx-2" onClick ={handlecopy}>click to copy</button>
+  
+  <div className="container my-3" style = {{color: props.mode==="dark"?"white":"#052d54"}}>
+  <h1>your Text contains these no of words and charaters</h1>
+  <p>words: {text.split(" ").length} charaters : {text.length}</p>
+  <h2>how many min you will take to read it</h2>
+  <p className='my-3'>{1/25 * text.length}</p>
+  <h1>preview</h1>
+  <p>{text.toUpperCase()}</p>
+  </div>
+
+</>
+  )
+}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%###$%%%%%%%%%%%%%%%%%
+
+ // hamesha file ka naam capital se chalu karna.
+// just type rfc
+import React from 'react'
+import PropTypes from 'prop-types';
+
+export default function Navbar(props) {
+  return (
+    
+      <>
+      <nav className={`navbar navbar-${props.mode} navbar-expand-lg bg-${props.mode}`}>
+      <div className="container-fluid">
+        <a className="navbar-brand" href="/">{props.title}</a>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/">Link</a>
+            </li>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </a>
+              <ul className="dropdown-menu">
+                <li><a className="dropdown-item" href="/">Action</a></li>
+                <li><a className="dropdown-item" href="/">Another action</a></li>
+                <li><hr className="dropdown-divider"/></li>
+                <li><a className="dropdown-item" href="/">Something else here</a></li>
+              </ul>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link disabled">Disabled</a>
+            </li>
+          </ul>
+          <div class={`custom-control custom-switch text-${props.mode==="light"?"#052d54":"liAht"}`}>
+  <input type="checkbox" class="custom-control-input height-128px" onClick={props.enableMode} id="customSwitch1"/>
+  <label class="custom-control-label" htmlFor="customSwitch1">${props.mode}</label>
+</div>
+
+        </div>
+      </div>
+    </nav>
+    
+    </>
+  );
+}
+
+Navbar.propTypes ={
+  title:PropTypes.string.isRequired
+}
+
+Navbar.defaultProps ={
+  title: 'set title here'
+}

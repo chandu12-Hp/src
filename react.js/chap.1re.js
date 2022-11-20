@@ -1,0 +1,2 @@
+// es chap me index.js joki my app ke src me bna hai vha jakr aap react app ko on by terminal me npm start likhne se ho jayega jha automatic edge me ek react logo ka page dikhega.
+// npm ki jgh npx ka use basically hum npm ko npm instsll g npm-create-react-app (favirout folder name)  install use karte hai pr jb online km data khapat kiye kaam karna ho to npx npx-create-react-app (favirout folder name) kare

@@ -1,0 +1,45 @@
+<!-- jayda tr kam text.js me hi tha esi karn vhi karenge lekin updated ko yha copy kr dunga. -->
+
+import React, { useState } from 'react';
+
+
+
+export default function textForm(props) {
+  const handleclick = () =>{
+    console.log("uppercase has clicked" + text) ;
+    let newtext = text.toUpperCase();
+    setText(newtext);
+  }
+  const handleonclick = () =>{
+    console.log("lowercase has clicked" + text) ;
+    let newtext = text.toLowerCase();
+    setText(newtext);
+  }
+  const handleOnchange = (event) =>{
+    console.log("onchange has clicked")
+    setText(event.target.value);
+  }
+  const [text ,setText] = useState("Enter the Text here");
+  return (
+    <>
+<div className="mb-3 container">
+
+  <label htmlFor="exampleFormControlTextarea1" className="form-label comntainer">THE TEXT BOX</label>
+  <h1>{props.heading}</h1>
+  <textarea className="form-control" id="exampleFormControlTextarea1" value ={text}rows="8"onChange ={handleOnchange} ></textarea>
+  </div>
+  <button className = "  btn btn-primary mx-2" onClick ={handleclick}>Convert to Uppercase</button>
+  <button className = "  btn btn-primary mx-2" onClick ={handleonclick}>Convert to lowercase</button>
+  
+  <div className="container my-3">
+  <h1>your Text contains these no of words and charaters</h1>
+  <p>words: {text.split(" ").length} charaters : {text.length}</p>
+  <h2>how many min you will take to read it</h2>
+  <p className='my-3'>{1/25 * text.length}</p>
+  <h1>preview</h1>
+  <p>{text.toUpperCase()}</p>
+  </div>
+
+</>
+  )
+}
